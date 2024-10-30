@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ibonjour123-ceaee-https-ingress
+  namespace: ibonjour123-ceaee
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - thanak81-ibonjour123.assessify.org
+      secretName: ibonjour123-ceaee-secret-tls
+  rules:
+    - host: thanak81-ibonjour123.assessify.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ibonjour123-ceaee-service
+                port:
+                  number: 8092
