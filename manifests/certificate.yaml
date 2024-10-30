@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ibonjour123-ceaee-certificate
+  namespace: ibonjour123-ceaee
+spec:
+  secretName: ibonjour123-ceaee-secret-tls
+  commonName: thanak81-ibonjour123.assessify.org
+  dnsNames:
+  - thanak81-ibonjour123.assessify.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
